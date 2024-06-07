@@ -4,8 +4,7 @@ from app_category.models import Category
 
 
 # Register your models here.
-class CategoryAdmin(admin.ModelAdmin):
-    ...
+class CategoryAdmin(admin.ModelAdmin): ...
 
 
 admin.site.register(Category, CategoryAdmin)
