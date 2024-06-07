@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class AppVideoConfig(AppConfig):
-    name = 'app_video'
+    name = "app_video"
