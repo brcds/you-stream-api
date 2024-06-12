@@ -6,7 +6,13 @@ from app_category.api.serializers import CategorySerializer
 
 
 class VideoSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
+    category = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(),
+        required=False,
+        error_messages={
+            "does_not_exist": "Categoria informada não existe."
+        }
+    )
 
     class Meta:
         model = Video
@@ -27,8 +33,6 @@ class VideoSerializer(serializers.ModelSerializer):
                 data["category"] = Category.objects.get(id=1)
             except Category.DoesNotExist:
                 raise serializers.ValidationError(detail="Categoria padrão não existe.")
-
-        print(data)
         return data
 
     def create(self, validated_data):
