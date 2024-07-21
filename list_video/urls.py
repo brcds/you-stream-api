@@ -7,6 +7,9 @@ from app_video.api.viewsets import VideoViewSet
 from app_video.views import CategoryVideosList
 from app_video.views import VideosFreeList
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -45,3 +48,10 @@ urlpatterns = [
         name="video-free",
     ),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )
